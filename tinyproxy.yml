@@ -1,0 +1,8 @@
+tinyproxy:
+  privileged: true
+  build: .
+  #image: ubuntu
+  ports:
+    - "8888:8888"
+  restart: always
+  command: bash -c "route add -net 192.168.0.0/16 gw 172.17.0.1 dev eth0 && service tinyproxy start && openconnect <SERVER> -u <USERNAME> --servercert sha256:d1988b24b9455378e624d87fc91c1696598b5303b43eb0695a51a33f9c20830f --passwd-on-stdin < password.txt"
